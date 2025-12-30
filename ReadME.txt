@@ -1,4 +1,4 @@
-¡Perfecto! 😄 Aquí tienes un **README completo listo para copiar y pegar**, en **inglés**, que incluye descripción del proyecto, diagrama ASCII del display, calibración del S‑meter y ejemplos de visualización. Todo en **un solo archivo** listo para GitHub.
+¡Perfecto! 😄 en **inglés**, que incluye descripción del proyecto, diagrama ASCII del display, calibración del S‑meter y ejemplos de visualización. Todo en **un solo archivo** listo para GitHub.
 
 ---
 
@@ -134,3 +134,4 @@ Si quieres, puedo también **prepararte un pequeño “GIF” o diagrama animado
 
 ¿Quieres que haga eso?
 ```
+
