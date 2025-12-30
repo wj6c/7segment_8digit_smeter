@@ -1,7 +1,4 @@
-
 LEAME3
-
-
 S_meter_8digit_7segmet.ino. 
 Incluye general, esquema de dígitos, descripción del S‑meter y detalles de uso .
 # S_meter_8digit_7segmet.ino
@@ -95,5 +92,6 @@ Conecte su pantalla de 8 dígitos con MAX7219 al microcontrolador según el esqu
 Ajusta la frecuencia de prueba en rx_freq.
 
 Conecta la señal al pin A6 yo
+
 
 Modifica smeterLevel()para calibrar según tu circuito y
