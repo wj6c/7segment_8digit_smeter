@@ -1,5 +1,4 @@
-LEAME3
-S_meter_8digit_7segmet.ino. 
+LÉAME 3-S_meter_8digit_7segmet.ino. 
 Incluye general, esquema de dígitos, descripción del S‑meter y detalles de uso .
 # S_meter_8digit_7segmet.ino
 
@@ -95,3 +94,4 @@ Conecta la señal al pin A6 yo
 
 
 Modifica smeterLevel()para calibrar según tu circuito y
+
