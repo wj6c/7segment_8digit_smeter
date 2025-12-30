@@ -1,9 +1,4 @@
-¡Perfecto! 😄 en **inglés**, que incluye descripción del proyecto, diagrama ASCII del display, calibración del S‑meter y ejemplos de visualización. Todo en **un solo archivo** listo para GitHub.
-
----
-
-```markdown
-# S_meter_8digit_7segmet.ino
+S_meter_8digit_7segmet.ino
 
 This project displays an S‑meter along with frequency on an **8‑digit 7‑segment display** using the **LedControl** library. Compatible with ATmega/LGT8FX microcontrollers and MAX7219-based modules.
 
@@ -134,4 +129,5 @@ Si quieres, puedo también **prepararte un pequeño “GIF” o diagrama animado
 
 ¿Quieres que haga eso?
 ```
+
 
