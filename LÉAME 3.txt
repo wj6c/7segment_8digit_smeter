@@ -1,0 +1,99 @@
+
+LEAME3
+
+
+S_meter_8digit_7segmet.ino. 
+Incluye general, esquema de dígitos, descripción del S‑meter y detalles de uso .
+# S_meter_8digit_7segmet.ino
+
+Proyecto para mostrar un medidor S (S‑meter) junto con la frecuencia en un display de **8 dígitos 7‑segmentos** usando la biblioteca **LedControl**. Compatible con microcontroladores tipo ATmega/LGT8FX y módulo MAX7219.
+
+## Características principales
+
+- Frecuencia: 5 dígitos visibles (dígitos 3–7).  
+- S‑meter visualizado en los últimos dígitos:  
+  - **Penúltimo dígito (1):** decena de S‑meter solo si S ≥ 10  
+  - **Último dígito (0):** unidad del S‑meter  
+- **Antepenúltimo dígito (2):** apagado por defecto para separar visualmente la frecuencia del S‑meter.  
+- Compatible con señales S de 1 a 20 (ajustable por ADC).  
+- Serial monitor muestra el valor ADC y nivel S correspondiente.  
+- Fácil integración con botones o lecturas externas (ej. A3, A6).  
+
+---
+
+## Esquema de dígitos en el display
+
+| Dígito (LedControl) | Contenido |
+|--------------------|-----------|
+| 7–3                | Frecuencia (5 dígitos) |
+| 2                  | Antepenúltimo: apagado por defecto |
+| 1                  | Penúltimo: decena S‑meter si S ≥ 10 |
+| 0                  | Último: unidad S‑meter |
+
+**Comportamiento visual:**
+
+| Señal (S) | Dígito 2 | Dígito 1 | Dígito 0 |
+|-----------|-----------|----------|-----------|
+| 1–9       | apagado   | apagado  | 1–9       |
+| 10        | apagado   | 1        | 0         |
+| 15        | apagado   | 1        | 5         |
+| 20        | apagado   | 2        | 0         |
+
+---
+
+## Conexiones de hardware
+
+| Pin            | Conexión                   |
+|----------------|---------------------------|
+| DIN            | Pin 11 del MCU             |
+| CLK            | Pin 13 del MCU             |
+| CS             | Pin 12 del MCU             |
+| S_METER_PIN    | A6 (entrada ADC)           |
+| BUTTON_PIN     | A3 (opcional)              |
+
+---
+
+## Calibración del S‑meter
+
+1. Conecta la señal de prueba al pin **A6** (0–5V).  
+2. Ajusta los valores de `smeterLevel()` en el código para reflejar correctamente los niveles S:
+
+```cpp
+byte smeterLevel(uint16_t adc) {
+  if      (adc < 50)   return 1;
+  else if (adc < 70)   return 2;
+  else if (adc < 90)   return 3;
+  else if (adc < 120)  return 4;
+  else if (adc < 160)  return 5;
+  else if (adc < 200)  return 6;
+  else if (adc < 250)  return 7;
+  else if (adc < 320)  return 8;
+  else if (adc < 400)  return 9;
+  else if (adc < 500)  return 10;   
+  else if (adc < 600)  return 15;   
+  else                  return 20;   
+}
+
+
+--------------------------------
+--------------------------
+Pruebe tocando A6 o aplicando voltajes de prueba y observe cómo se encienden los dígitos de S‑meter.
+
+Ajusta los valores en smeterLevel()hasta que coincidan con la señal real deseada.
+
+Nota: El antepenúltimo dígito (dígito 2) permanece apagado para separar la frecuencia de la lectura del S‑meter. Solo se ilumina para pruebas externas o voltaje aplicado en A6.
+
+Dependencias
+
+Biblioteca LedControl
+versión 1.0.6 o superior.
+
+Uso
+
+Conecte su pantalla de 8 dígitos con MAX7219 al microcontrolador según el esquema.
+
+Ajusta la frecuencia de prueba en rx_freq.
+
+Conecta la señal al pin A6 yo
+
+Modifica smeterLevel()para calibrar según tu circuito y

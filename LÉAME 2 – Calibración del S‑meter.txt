@@ -1,0 +1,54 @@
+LÉAME 2 – Calibración del S‑meter
+# Calibración del S‑meter para S_meter_8digit_7segmet.ino
+
+Para que el S‑meter refleje correctamente la señal recibida:
+
+## 1. Preparar la lectura ADC
+
+- Conecta la señal de prueba al pin A6.  
+- Asegúrate de que el rango de voltaje sea **0–5V**.  
+- Para señales muy bajas, el último dígito mostrará valores 1–9.  
+- Para señales más altas, el penúltimo dígito mostrará la decena y el último la unidad.
+
+## 2. Ajustar los niveles S en el código
+
+En la función `smeterLevel()`:
+
+```cpp
+byte smeterLevel(uint16_t adc) {
+  if      (adc < 50)   return 1;
+  else if (adc < 70)   return 2;
+  else if (adc < 90)   return 3;
+  else if (adc < 120)  return 4;
+  else if (adc < 160)  return 5;
+  else if (adc < 200)  return 6;
+  else if (adc < 250)  return 7;
+  else if (adc < 320)  return 8;
+  else if (adc < 400)  return 9;
+  else if (adc < 500)  return 10;   
+  else if (adc < 600)  return 15;   
+  else                  return 20;   
+}
+
+
+-------------------------------
+----------------------
+Puedes modificar los umbrales según tu circuito y rango de señal.
+
+3. Probar y ajustar
+
+Conecte un generador de señales o toca con el dedo el pin A6 para probar.
+
+Observe los dígitos de S‑meter en la pantalla:
+
+Último dígito = unidad
+
+Penúltimo dígito = decena si s ≥ 10
+
+Ajusta los valores en smeterLevel()hasta que coincidan.
+
+Nota
+
+El antepenúltimo dígito permanece apagado siempre que no quieras mostrar decenas de S‑meter en señales ≤9, manteniendo la separación visual de la frecuencia.
+
+Para señales de prueba (ej. +5V en A6) se puede verificar que el penúltimo dígito muestra correctamente la decena y el último la unidad.

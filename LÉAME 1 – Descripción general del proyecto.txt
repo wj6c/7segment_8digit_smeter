@@ -1,0 +1,41 @@
+LÉAME 1 – Descripción general del proyecto
+# S_meter_8digit_7segmet.ino
+
+Este proyecto muestra un medidor S (S‑meter) junto con la frecuencia en un display de **8 dígitos 7‑segmentos** usando la biblioteca **LedControl**. Está diseñado para microcontroladores tipo ATmega/LGT8FX y un módulo 7‑segmentos con 1 chip MAX7219.
+
+## Características principales
+
+- Frecuencia fija o variable (5 dígitos visibles, dígitos 3–7).  
+- S‑meter visualizado en los **dos últimos dígitos**:
+  - Penúltimo dígito: decena de S‑meter (solo si S ≥ 10)  
+  - Último dígito: unidad de S‑meter  
+- Antepenúltimo dígito (justo después de la frecuencia) **siempre apagado** para separar visualmente la frecuencia del S‑meter.  
+- Compatible con señales de S de 1 a 20 (ajustable por ADC).  
+- Muestra en el Serial el valor ADC y el nivel S correspondiente.  
+- Fácil integración con botones o lecturas externas (ej. A3, A6).  
+
+## Esquema de conexiones
+
+| Pin | Conexión |
+|-----|-----------|
+| DIN | Pin 11 del MCU |
+| CLK | Pin 13 del MCU |
+| CS  | Pin 12 del MCU |
+| S_METER_PIN | A6 (entrada ADC) |
+| BUTTON_PIN | A3 (opcional) |
+
+## Comportamiento visual
+
+| Señal (S) | Dígito 2 (antepenúltimo) | Dígito 1 (penúltimo) | Dígito 0 (último) |
+|-----------|--------------------------|---------------------|-----------------|
+| 1–9       | apagado                  | apagado             | 1–9             |
+| 10        | apagado                  | 1                   | 0               |
+| 15        | apagado                  | 1                   | 5               |
+| 20        | apagado                  | 2                   | 0               |
+
+- Frecuencia: dígitos 3–7  
+- Espacio visual claro entre frecuencia y S‑meter: dígito 2 apagado
+
+## Dependencias
+
+- Biblioteca LedControl (`LedControl.h`) versión 1.0.6 o superior.
